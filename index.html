@@ -3,111 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restoran Vezir - Bihać</title>
+    <title>Restoran Vezir - Meni</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Jezici na vrhu -->
-    <div class="lang-bar">
-        <button onclick="changeLanguage('bs')" class="lang-btn active">BS</button>
-        <button onclick="changeLanguage('en')" class="lang-btn">EN</button>
-        <button onclick="changeLanguage('de')" class="lang-btn">DE</button>
-        <button onclick="changeLanguage('tr')" class="lang-btn">TR</button>
-    </div>
-
-    <!-- Hero Sekcija -->
-    <header class="hero-section">
-        <div class="hero-overlay">
-            <h1>Restoran Vezir</h1>
-            <p id="hero-subtitle">Tradicionalni specijaliteti & vrhunski roštilj</p>
-            <a href="#menu-section" class="scroll-btn" id="btn-scroll">Pogledaj Meni ↓</a>
+    <!-- Jezici u vrhu -->
+    <header class="top-bar">
+        <div class="lang-selector">
+            <button class="lang-btn active" onclick="changeLanguage('bs')">BS</button>
+            <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="changeLanguage('tr')">TR</button>
+            <button class="lang-btn" onclick="changeLanguage('ar')">AR</button>
         </div>
     </header>
 
-    <!-- Glavni dio sa menijem -->
-    <section id="menu-section" class="main-layout">
-        
-        <!-- Meni sa kategorijama (Lijeva strana) -->
-        <aside class="sidebar-menu">
-            <h3 id="cat-title">Meni</h3>
-            <ul>
-                <li><button class="cat-btn active" onclick="selectCategory('pica')">Pića</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('cevapi')">Ćevapi & Roštilj</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('piletina')">Piletina</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('supe')">Supe i Čorbe</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('mijesano')">Miješano Meso</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('riba')">Riba</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('prilozi')">Prilozi</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('salate')">Salate</button></li>
-                <li><button class="cat-btn" onclick="selectCategory('slatko')">Slatka Jela</button></li>
-            </ul>
-        </aside>
-
-        <!-- Sadržaj kategorije (Desna strana) -->
-        <main class="menu-display">
-            <h2 id="active-category-name">Pića</h2>
-            <div id="items-container">
-                <!-- Ubacuje se dinamički preko JS-a -->
-            </div>
-        </main>
-
+    <!-- Hero Sekcija -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>RESTORAN VEZIR</h1>
+            <p id="hero-subtitle">Mjesto gdje tradicija susreće kvalitet</p>
+            <a href="#menu-section" class="scroll-btn" id="btn-scroll">Pogledaj Meni ↓</a>
+        </div>
     </section>
 
-    <!-- Modal za Preporuke (Pop-up) -->
-    <div id="recommendation-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+    <!-- Meni Sekcija -->
+    <main class="menu-container" id="menu-section">
+        <h2 class="section-title" id="cat-title">Meni</h2>
+
+        <div class="menu-wrapper">
+            <!-- Navigacija Kategorija -->
+            <nav class="categories-nav">
+                <button class="cat-btn active" id="btn-pica" onclick="selectCategory('pica', this)">Pića</button>
+                <button class="cat-btn" id="btn-supe" onclick="selectCategory('supe', this)">Kuhana Jela & Supe</button>
+                <button class="cat-btn" id="btn-cevapi" onclick="selectCategory('cevapi', this)">Ćevapi & Roštilj</button>
+                <button class="cat-btn" id="btn-piletina" onclick="selectCategory('piletina', this)">Pileći Specijaliteti</button>
+                <button class="cat-btn" id="btn-mijesano" onclick="selectCategory('mijesano', this)">Miješana Mesa & Plate</button>
+                <button class="cat-btn" id="btn-riba" onclick="selectCategory('riba', this)">Riba & Morski Plodovi</button>
+                <button class="cat-btn" id="btn-salate" onclick="selectCategory('salate', this)">Salate</button>
+                <button class="cat-btn" id="btn-prilozi" onclick="selectCategory('prilozi', this)">Prilozi & Sosevi</button>
+                <button class="cat-btn" id="btn-slatko" onclick="selectCategory('slatko', this)">Deserti</button>
+            </nav>
+
+            <!-- Prikaz Jela -->
+            <section class="menu-display">
+                <h3 id="active-category-name" class="active-category-title">Pića</h3>
+                <div id="items-container" class="items-list">
+                    <!-- Dinamički sadržaj učitava JS -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Pop-up Modal za Preporuke Priloga -->
+    <div id="recommendation-modal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
             <h3 id="modal-title">Najčešće naručivano uz ovo</h3>
-            <p class="modal-sub">Kliknite na prilog da saznate više detalja o njemu:</p>
+            <p id="modal-sub">Kliknite na dodatak za više detalja:</p>
             <div class="side-options">
-                <button onclick="showSideDetail('kajmak')">🧀 Kajmak</button>
-                <button onclick="showSideDetail('ajvar')">🌶️ Ajvar</button>
+                <button onclick="showSideDetail('kajmak')">🧀 Domaći Kajmak</button>
+                <button onclick="showSideDetail('ajvar')">🌶️ Domaći Ajvar</button>
+                <button onclick="showSideDetail('lepinja')">🫓 Dodatna Lepinja</button>
                 <button onclick="showSideDetail('jogurt')">🥛 Domaći Jogurt / Ajran</button>
-                <button onclick="showSideDetail('luk')">🧅 Svježi Luk</button>
-                <button onclick="showSideDetail('pomfrit')">🍟 Pomfrit</button>
+                <button onclick="showSideDetail('sudzukica_komad')">🌭 Komad Sudžukice</button>
+                <button onclick="showSideDetail('kobasica_komad')">🌭 Komad Kobasice</button>
+                <button onclick="showSideDetail('senf')">🟡 Senf</button>
             </div>
         </div>
     </div>
 
-    <!-- Ocjenjivanje i Recenzije -->
+    <!-- Modal za zumiranje slike -->
+    <div id="image-lightbox" class="modal-overlay" onclick="closeImageModal()">
+        <span class="close-modal">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Slika u velikoj rezoluciji">
+    </div>
+
+    <!-- Sekcija Ocjena -->
     <section class="rating-section">
-        <div class="rating-card">
-            <h3 id="rating-title">Ostavite Vašu Ocjenu</h3>
-            <p id="rating-sub">Vaše mišljenje nam je izuzetno važno!</p>
-            <div class="stars">★★★★★</div>
-            <p class="overall-rating"><span id="lbl-overall">Sveukupni rejting:</span> <strong>4.9 / 5.0</strong> ★</p>
-            <a href="https://maps.google.com" target="_blank" class="google-review-btn" id="btn-google">
-                Ostavi ocjenu na Google-u
-            </a>
+        <h3 id="rating-title">Ostavite Vašu Ocjenu</h3>
+        <p id="rating-sub">Vaše mišljenje nam je izuzetno važno!</p>
+        <div class="rating-box">
+            <span id="lbl-overall">Sveukupni rejting:</span>
+            <div class="stars">⭐⭐⭐⭐⭐ <strong>4.9/5.0</strong></div>
+            <a href="https://maps.google.com" target="_blank" class="google-btn" id="btn-google">Ostavi ocjenu na Google-u</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-box">
-                <h4 id="about-title">O Nama</h4>
-                <p id="about-text">Restoran Vezir nudi vrhunske roštiljske i tradicionalne specijalitete u srcu Bihaća.</p>
-            </div>
-
-            <div class="footer-box">
-                <h4 id="contact-title">Kontakt & Lokacija</h4>
-                <p>📍 Ul. Irfana Ljubijankića 66, Bihać</p>
-                <p>📞 061/368-367</p>
-                <p>💡 Kuhana jela na upit konobara!</p>
-            </div>
-
-            <div class="footer-box">
-                <h4 id="social-title">Pratite Nas</h4>
-                <div class="social-links">
-                    <a href="#" target="_blank">Instagram</a>
-                    <a href="#" target="_blank">Facebook</a>
-                </div>
-            </div>
+    <!-- Footer O Nama / Kontakt -->
+    <footer class="site-footer">
+        <div class="footer-info">
+            <h4 id="about-title">O Nama</h4>
+            <p id="about-text">Restoran Vezir - Mjesto gdje tradicija susreće kvalitet. Vrhunski roštiljski i tradicionalni specijaliteti od halal mesa.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Restoran Vezir Bihać. Sva prava zadržana.</p>
+        <div class="footer-contact">
+            <h4 id="contact-title">Kontakt & Lokacija</h4>
+            <p>📍 Travnik, Bosna i Hercegovina</p>
+            <p>📞 +387 61 000 000</p>
+        </div>
+        <div class="footer-social">
+            <h4 id="social-title">Pratite Nas</h4>
+            <p>🌐 Instagram / Facebook</p>
         </div>
     </footer>
 
