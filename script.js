@@ -1,10 +1,11 @@
-// Baza podataka sa ažuriranim cijenama i dodanim Ness napitcima za 4 jezika
+// Baza podataka za Restoran Vezir sa prilagođenim kategorijama i multijezičnom podrškom za slike
 const menuData = {
     bs: {
         categories: {
             pica: "Pića",
-            supe: "Kuhana Jela & Supe",
-            cevapi: "Ćevapi & Roštilj",
+            supe: "Supe",
+            cevapi: "Ćevapi",
+            ostala: "Ostala jela",
             piletina: "Pileći Specijaliteti",
             mijesano: "Miješana Mesa & Plate",
             riba: "Riba & Morski Plodovi",
@@ -85,12 +86,15 @@ const menuData = {
                     { name: "Desetka u cijeloj", price: "12,00 KM", desc: "10 travničkih ćevapa na roštilju u cijeloj lepinji uz svježi luk. Halal meso.", img: "images/desetka-cijela.jpg" },
                     { name: "Petnaestka u cijeloj", price: "15,00 KM", desc: "15 travničkih ćevapa na roštilju u cijeloj lepinji uz svježi luk. Halal meso.", img: "images/petnaeska.jpg" },
                     { name: "Dvadesetka u cijeloj", price: "20,00 KM", desc: "20 travničkih ćevapa na roštilju u cijeloj lepinji uz svježi luk. Halal meso.", img: "images/dvadesetka.jpg" }
-                ]},
-                { subcategory: "PLJESKAVICE I SUDŽUKICE", items: [
+                ]}
+            ],
+            ostala: [
+                { subcategory: "OSTALA JELA SA ROŠTILJA I BURGERI", items: [
                     { name: "Punjena pljeskavica", price: "15,00 KM", desc: "Pljeskavica od mljevenog mesa punjena sirom, pečena na roštilju u lepinji. Halal meso.", img: "images/punjena-pljeskavica.jpg" },
                     { name: "Obična pljeskavica", price: "10,00 KM", desc: "Tradicionalna začinjena pljeskavica na roštilju u lepinji. Halal meso.", img: "images/pljeskavica.jpg" },
-                    { name: "Sudžukice – mala porcija", price: "7,00 KM", desc: "2 začinjene mesne kobasice sa roštilja uz lepinju i senf. Halal meso.", img: "images/sudzukice-mala.jpg" },
-                    { name: "Sudžukice – velika porcija", price: "9,00 KM", desc: "3 začinjene mesne kobasice sa roštilja uz lepinju i senf. Halal meso.", img: "images/sudzukice-velika.jpg" }
+                    { name: "Sudžukice – mala porcija", price: "7,00 KM", desc: "2 začinjene sudzukice sa roštilja uz lepinju i senf. Halal meso.", img: "images/sudzukice-mala.jpg" },
+                    { name: "Sudžukice – velika porcija", price: "9,00 KM", desc: "3 začinjene sudzukice sa roštilja uz lepinju i senf. Halal meso.", img: "images/sudzukice-velika.jpg" },
+                    { name: "Vezir Burger", price: "8,00 KM", desc: "Hamburger/Cheeseburger sa salatom i namazima, sa prilogom pomfrija. Halal meso.", img: "images/vezir-burger.jpg" }
                 ]}
             ],
             piletina: [
@@ -108,15 +112,15 @@ const menuData = {
             mijesano: [
                 { subcategory: "MIJEŠANA MESA I PLATE", items: [
                     { name: "Miješano meso za 1 osobu", price: "15,00 KM", desc: "3 ćevapa, 1 ražnjić, 1 pljeskavica, 1 kobasica, pohovana piletina, file + lepinja, pomfrit i salata. Halal meso.", img: "images/mijesano1.jpg" },
-                    { name: "Miješano meso za 2 osobe", price: "28,00 KM", desc: "Dvostruka porcija miješanog mesa uz 2 lepinje, pomfrit i salatu. Halal meso.", img: "images/mijesano2.jpg" },
-                    { name: "Miješano meso za 3 osobe", price: "38,00 KM", desc: "Trostruka plata miješanog mesa uz 3 lepinje, pomfrit i salatu. Halal meso.", img: "images/mijesano3.jpg" },
+                    { name: "Miješano meso za 2 osobe", price: "28,00 KM", desc: "6 ćevapa, 2 pileća ražnjića, 2 pljeskavice, 2 kobasice, 2 pohovane piletine, 2 pileća filea + 2 lepinje, pomfrit i salata. Halal meso.", img: "images/mijesano2.jpg" },
+                    { name: "Miješano meso za 3 osobe", price: "38,00 KM", desc: "9 ćevapa, 3 pileća ražnjića, 3 pljeskavice, 3 kobasice, 3 pohovane piletine, 3 pileća filea + 3 lepinje, pomfrit i salata. Halal meso.", img: "images/mijesano3.jpg" },
                     { name: "Vezir plata", price: "65,00 KM", desc: "Bogata plata: 10 ćevapa, 4 filea, 4 kotleta, 4 kobasice, 4 pljeskavice, 4 ražnjića + 4 lepinje, pomfrit i sos. Halal meso.", img: "images/vezir-plata.jpg" }
                 ]}
             ],
             riba: [
                 { subcategory: "RIBA I MORSKI PLODOVI", items: [
                     { name: "Pastrmka s roštilja – mala porcija", price: "12,00 KM", desc: "1 komad pastrmke na roštilju uz pomfrit, sos i limun.", img: "images/pastrmka1.jpg" },
-                    { name: "Pastrmka s roštilja – velika porcija", price: "20,00 KM", desc: "2 komada pastrmke na roštilju uz pomfrit, sos i limun.", img: "images/pastrmka2.jpg" },
+                    { name: "Pastrmka s roštilja – velika porcija", price: "20,00 KM", desc: "2 komad pastrmke na roštilju uz pomfrit, sos i limun.", img: "images/pastrmka2.jpg" },
                     { name: "Lignje s roštilja", price: "18,00 KM", desc: "Mekane lignje sa roštilja uz pomfrit i sos.", img: "images/lignje.jpg" }
                 ]}
             ],
@@ -130,14 +134,14 @@ const menuData = {
             ],
             prilozi: [
                 { subcategory: "PRILOZI I DODACI", items: [
-                    { name: "Jogurt", price: "2,00 KM", desc: "Kremasti mliječni napitak." },
-                    { name: "Ajran", price: "2,00 KM", desc: "Hladni slankasti jogurt." },
-                    { name: "Kajmak", price: "2,50 KM", desc: "Domaći gusti mliječni kajmak." },
-                    { name: "Ajvar", price: "1,00 KM", desc: "Domaći namaz od paprika." },
-                    { name: "Pomfrit", price: "3,00 KM", desc: "Hrskavi prženi krompir." },
-                    { name: "Komad sudžukice", price: "2,00 KM", desc: "Začinjena kobasica na roštilju. Halal." },
-                    { name: "Komad kobasice", price: "2,00 KM", desc: "Kobasica na roštilju. Halal." },
-                    { name: "Dodatna lepinja", price: "2,00 KM", desc: "Topla lepinja natopljena saftom." },
+                    { name: "Jogurt", price: "2,00 KM", desc: "Kremasti mliječni napitak.", img: "images/jogurt.jpg"},
+                    { name: "Ajran", price: "2,00 KM", desc: "Hladni slankasti jogurt.", img: "images/ajran.jpg"},
+                    { name: "Kajmak", price: "2,50 KM", desc: "Domaći gusti mliječni kajmak.", img: "images/kajmak.jpg"},
+                    { name: "Ajvar", price: "1,00 KM", desc: "Domaći namaz od paprika.", img: "images/ajvar.jpg"},
+                    { name: "Pomfrit", price: "3,00 KM", desc: "Hrskavi prženi krompir.", img: "images/pomfrit.jpg"},
+                    { name: "Komad sudžukice", price: "2,00 KM", desc: "Začinjena kobasica na roštilju. Halal.", img: "images/sudzukica.jpg"},
+                    { name: "Komad kobasice", price: "2,00 KM", desc: "Kobasica na roštilju. Halal.", img: "images/kobasica.jpg"},
+                    { name: "Dodatna lepinja", price: "2,00 KM", desc: "Topla lepinja natopljena saftom.", img: "images/lepinja.jpg"},
                     { name: "Majoneza", price: "1,00 KM" },
                     { name: "Kečap", price: "Gratis" },
                     { name: "Senf", price: "1,00 KM" },
@@ -163,8 +167,9 @@ const menuData = {
     en: {
         categories: {
             pica: "Drinks",
-            supe: "Soups & Broths",
-            cevapi: "Cevapi & Grilled Meat",
+            supe: "Soups",
+            cevapi: "Cevapi",
+            ostala: "Other Dishes",
             piletina: "Chicken Specialties",
             mijesano: "Platters & Mixed Meat",
             riba: "Fish & Seafood",
@@ -245,12 +250,11 @@ const menuData = {
                     { name: "10 Cevapi in Whole Flatbread", price: "12,00 KM", desc: "10 grilled cevapi in whole flatbread with onions. 100% Halal.", img: "images/desetka-cijela.jpg" },
                     { name: "15 Cevapi in Whole Flatbread", price: "15,00 KM", desc: "15 grilled cevapi served in whole flatbread. 100% Halal.", img: "images/petnaeska.jpg" },
                     { name: "20 Cevapi in Whole Flatbread", price: "20,00 KM", desc: "20 grilled cevapi served in whole flatbread. 100% Halal.", img: "images/dvadesetka.jpg" }
-                ]},
-                { subcategory: "PATTIES & SAUSAGES", items: [
-                    { name: "Cheese-Stuffed Patty", price: "15,00 KM", desc: "Grilled minced meat patty filled with melted cheese in flatbread. 100% Halal.", img: "images/punjena-pljeskavica.jpg" },
-                    { name: "Regular Patty (Pljeskavica)", price: "10,00 KM", desc: "Traditional grilled minced meat patty served in flatbread. 100% Halal.", img: "images/pljeskavica.jpg" },
-                    { name: "Grilled Sausages – Small Portion", price: "7,00 KM", desc: "2 spicy grilled meat sausages served with flatbread and mustard. 100% Halal.", img: "images/sudzukice-mala.jpg" },
-                    { name: "Grilled Sausages – Large Portion", price: "9,00 KM", desc: "3 spicy grilled meat sausages served with flatbread and mustard. 100% Halal.", img: "images/sudzukice-velika.jpg" }
+                ]}
+            ],
+            ostala: [
+                { subcategory: "OTHER DISHES & BURGERS", items: [
+                    { name: "Vezir Burger", price: "8,00 KM", desc: "Hamburger/Cheeseburger with salad and spreads, served with french fries. Halal.", img: "images/vezir-burger.jpg" }
                 ]}
             ],
             piletina: [
@@ -268,9 +272,9 @@ const menuData = {
             mijesano: [
                 { subcategory: "PLATTERS & MIXED MEAT", items: [
                     { name: "Mixed Meat Platter for 1 Person", price: "15,00 KM", desc: "3 cevapi, 1 skewer, 1 patty, 1 sausage, breaded chicken, fillet + flatbread, fries and salad. 100% Halal.", img: "images/mijesano1.jpg" },
-                    { name: "Mixed Meat Platter for 2 Persons", price: "28,00 KM", desc: "Double portion platter served with 2 flatbreads, fries and salad. 100% Halal.", img: "images/mijesano2.jpg" },
-                    { name: "Mixed Meat Platter for 3 Persons", price: "38,00 KM", desc: "Triple portion platter served with 3 flatbreads, fries and salad. 100% Halal.", img: "images/mijesano3.jpg" },
-                    { name: "Vezir Grand Platter", price: "65,00 KM", desc: "Platter featuring cevapi, chicken fillets, veal chops, sausages, patties & skewers. 100% Halal.", img: "images/vezir-plata.jpg" }
+                    { name: "Mixed Meat Platter for 2 Persons", price: "28,00 KM", desc: "6 cevapi, 2 chicken skewers, 2 patties, 2 sausages, 2 breaded chickens, 2 chicken fillets + 2 flatbreads, fries and salad. 100% Halal.", img: "images/mijesano2.jpg" },
+                    { name: "Mixed Meat Platter for 3 Persons", price: "38,00 KM", desc: "9 cevapi, 3 chicken skewers, 3 patties, 3 sausages, 3 breaded chickens, 3 chicken fillets + 3 flatbreads, fries and salad. 100% Halal.", img: "images/mijesano3.jpg" },
+                    { name: "Vezir Grand Platter", price: "65,00 KM", desc: "Grand platter: 10 cevapi, 4 fillets, 4 veal chops, 4 sausages, 4 patties, 4 skewers + 4 flatbreads, fries and sauce. 100% Halal.", img: "images/vezir-plata.jpg" }
                 ]}
             ],
             riba: [
@@ -290,14 +294,14 @@ const menuData = {
             ],
             prilozi: [
                 { subcategory: "SIDES & SAUCES", items: [
-                    { name: "Yogurt Drink", price: "2,00 KM", desc: "Refreshing dairy drink." },
-                    { name: "Ayran", price: "2,00 KM", desc: "Salted chilled yogurt drink." },
-                    { name: "Homemade Kajmak Spread", price: "2,50 KM", desc: "Rich traditional dairy cream." },
-                    { name: "Homemade Ajvar Relish", price: "1,00 KM", desc: "Roasted pepper spread." },
-                    { name: "French Fries", price: "3,00 KM", desc: "Crispy golden potato fries." },
-                    { name: "One Piece of Sausage", price: "2,00 KM", desc: "Grilled sausage. 100% Halal." },
-                    { name: "One Piece of Grilled Sausage", price: "2,00 KM", desc: "Grilled sausage. 100% Halal." },
-                    { name: "Extra Flatbread", price: "2,00 KM", desc: "Fresh warm flatbread dipped in grill juice." },
+                    { name: "Yogurt Drink", price: "2,00 KM", desc: "Refreshing dairy drink.", img: "images/jogurt.jpg" },
+                    { name: "Ayran", price: "2,00 KM", desc: "Salted chilled yogurt drink.", img: "images/ajran.jpg" },
+                    { name: "Homemade Kajmak Spread", price: "2,50 KM", desc: "Rich traditional dairy cream.", img: "images/kajmak.jpg" },
+                    { name: "Homemade Ajvar Relish", price: "1,00 KM", desc: "Roasted pepper spread.", img: "images/ajvar.jpg" },
+                    { name: "French Fries", price: "3,00 KM", desc: "Crispy golden potato fries.", img: "images/pomfrit.jpg" },
+                    { name: "One Piece of Sausage", price: "2,00 KM", desc: "Grilled sausage. 100% Halal.", img: "images/sudzukica.jpg" },
+                    { name: "One Piece of Grilled Sausage", price: "2,00 KM", desc: "Grilled sausage. 100% Halal.", img: "images/kobasica.jpg" },
+                    { name: "Extra Flatbread", price: "2,00 KM", desc: "Fresh warm flatbread dipped in grill juice.", img: "images/lepinja.jpg" },
                     { name: "Mayonnaise", price: "1,00 KM" },
                     { name: "Ketchup", price: "Free" },
                     { name: "Mustard", price: "1,00 KM" },
@@ -324,7 +328,8 @@ const menuData = {
         categories: {
             pica: "İçecekler",
             supe: "Çorbalar",
-            cevapi: "Köfteler & Izgaralar",
+            cevapi: "Köfteler",
+            ostala: "Diğer Yemekler",
             piletina: "Tavuk Yemekleri",
             mijesano: "Karışık Izgara & Tabağı",
             riba: "Balık & Deniz Ürünleri",
@@ -405,12 +410,11 @@ const menuData = {
                     { name: "Tam Pidede 10 Köfte", price: "12,00 KM", desc: "10 adet ızgara köfte tam pidede soğan ile. %100 Helal et.", img: "images/desetka-cijela.jpg" },
                     { name: "Tam Pidede 15 Köfte", price: "15,00 KM", desc: "15 adet ızgara köfte tam pidede. %100 Helal et.", img: "images/petnaeska.jpg" },
                     { name: "Tam Pidede 20 Köfte", price: "20,00 KM", desc: "20 adet ızgara köfte dev porsiyon. %100 Helal et.", img: "images/dvadesetka.jpg" }
-                ]},
-                { subcategory: "PLJESKAVICA VE SUCUK", items: [
-                    { name: "Peynir Dolgulu Köfte", price: "15,00 KM", desc: "Eritilmiş peynir dolgulu ızgara kıyma köftesi pidede. %100 Helal et.", img: "images/punjena-pljeskavica.jpg" },
-                    { name: "Klasik Pljeskavica Köfte", price: "10,00 KM", desc: "Özel baharatlı ızgara kıyma köftesi pidede. %100 Helal et.", img: "images/pljeskavica.jpg" },
-                    { name: "Sucuk – Küçük Porsiyon", price: "7,00 KM", desc: "2 adet baharatlı ızgara sucuk pidede hardal ile. %100 Helal et.", img: "images/sudzukice-mala.jpg" },
-                    { name: "Sucuk – Büyük Porsiyon", price: "9,00 KM", desc: "3 adet baharatlı ızgara sucuk pidede hardal ile. %100 Helal et.", img: "images/sudzukice-velika.jpg" }
+                ]}
+            ],
+            ostala: [
+                { subcategory: "DİĞER YEMEKLER & BURGERLER", items: [
+                    { name: "Vezir Burger", price: "8,00 KM", desc: "Salata ve soslarla birlikte hazırlanan Hamburger/Cheeseburger, patates kızartması eşliğinde. Helal.", img: "images/vezir-burger.jpg" }
                 ]}
             ],
             piletina: [
@@ -427,10 +431,10 @@ const menuData = {
             ],
             mijesano: [
                 { subcategory: "KARIŞIK IZGARA & TABAĞI", items: [
-                    { name: "Tek Kişilik Karışık Izgara", price: "15,00 KM", desc: "Köfte, tavuk şiş, pljeskavica, sosis, çıtır tavuk ve bonfile + patates ve salata. %100 Helal.", img: "images/mijesano1.jpg" },
-                    { name: "İki Kişilik Karışık Izgara", price: "28,00 KM", desc: "İki kişilik zengin karışık ızgara tabağı. %100 Helal.", img: "images/mijesano2.jpg" },
-                    { name: "Üç Kişilik Karışık Izgara", price: "38,00 KM", desc: "Üç kişilik zengin karışık ızgara tabağı. %100 Helal.", img: "images/mijesano3.jpg" },
-                    { name: "Vezir Özel Ziyafet Tabağı", price: "65,00 KM", desc: "Tüm ızgara çeşitlerini içeren dev ziyafet tabağı. %100 Helal.", img: "images/vezir-plata.jpg" }
+                    { name: "Tek Kişilik Karışık Izgara", price: "15,00 KM", desc: "3 köfte, 1 şiş, 1 pljeskavica, 1 sosis, çıtır tavuk, bonfile + pide, patates ve salata. %100 Helal.", img: "images/mijesano1.jpg" },
+                    { name: "İki Kişilik Karışık Izgara", price: "28,00 KM", desc: "6 köfte, 2 tavuk şiş, 2 pljeskavica, 2 sosis, 2 çıtır tavuk, 2 tavuk bonfile + 2 pide, patates ve salata. %100 Helal.", img: "images/mijesano2.jpg" },
+                    { name: "Üç Kişilik Karışık Izgara", price: "38,00 KM", desc: "9 köfte, 3 tavuk şiş, 3 pljeskavica, 3 sosis, 3 çıtır tavuk, 3 tavuk bonfile + 3 pide, patates ve salata. %100 Helal.", img: "images/mijesano3.jpg" },
+                    { name: "Vezir Özel Ziyafet Tabağı", price: "65,00 KM", desc: "Zengin tabağı: 10 köfte, 4 bonfile, 4 pirzola, 4 sosis, 4 pljeskavica, 4 şiş + 4 pide, patates ve sos. %100 Helal.", img: "images/vezir-plata.jpg" }
                 ]}
             ],
             riba: [
@@ -450,14 +454,14 @@ const menuData = {
             ],
             prilozi: [
                 { subcategory: "MEZELER & SOSLAR", items: [
-                    { name: "Yoğurt", price: "2,00 KM", desc: "Fermente süt içeceği." },
-                    { name: "Ayran", price: "2,00 KM", desc: "Soğuk tuzlu ayran." },
-                    { name: "Ev Yapımı Kaymak", price: "2,50 KM", desc: "Geleneksel yoğun kaymak." },
-                    { name: "Ev Yapımı Ajvar", price: "1,00 KM", desc: "Közlenmiş kırmızı biber ezmesi." },
-                    { name: "Patates Kızartması", price: "3,00 KM", desc: "Çıtır patates kızartması." },
-                    { name: "1 Adet Sucuk", price: "2,00 KM", desc: "Izgara sucuk. %100 Helal." },
-                    { name: "1 Adet Sosis", price: "2,00 KM", desc: "Izgara sosis. %100 Helal." },
-                    { name: "Ekstra Pide", price: "2,00 KM", desc: "Et suyuna batırılmış sıcak pide." },
+                    { name: "Yoğurt", price: "2,00 KM", desc: "Fermente süt içeceği.", img: "images/jogurt.jpg" },
+                    { name: "Ayran", price: "2,00 KM", desc: "Soğuk tuzlu ayran.", img: "images/ajran.jpg" },
+                    { name: "Ev Yapımı Kaymak", price: "2,50 KM", desc: "Geleneksel yoğun kaymak.", img: "images/kajmak.jpg" },
+                    { name: "Ev Yapımı Ajvar", price: "1,00 KM", desc: "Közlenmiş kırmızı biber ezmesi.", img: "images/ajvar.jpg" },
+                    { name: "Patates Kızartması", price: "3,00 KM", desc: "Çıtır patates kızartması.", img: "images/pomfrit.jpg" },
+                    { name: "1 Adet Sucuk", price: "2,00 KM", desc: "Izgara sucuk. %100 Helal.", img: "images/sudzukica.jpg" },
+                    { name: "1 Adet Sosis", price: "2,00 KM", desc: "Izgara sosis. %100 Helal.", img: "images/kobasica.jpg" },
+                    { name: "Ekstra Pide", price: "2,00 KM", desc: "Et suyuna batırılmış sıcak pide.", img: "images/lepinja.jpg" },
                     { name: "Mayonez", price: "1,00 KM" },
                     { name: "Ketçap", price: "Ücretsiz" },
                     { name: "Hardal", price: "1,00 KM" },
@@ -483,8 +487,9 @@ const menuData = {
     ar: {
         categories: {
             pica: "المشروبات",
-            supe: "الشوربات والحساء",
-            cevapi: "الكباب والمشاوي",
+            supe: "الشوربات",
+            cevapi: "الكباب",
+            ostala: "أطباق أخرى",
             piletina: "أطباق الدجاج",
             mijesano: "مشاوي مشكلة والأطباق",
             riba: "الأسماك والمأكولات البحرية",
@@ -565,12 +570,11 @@ const menuData = {
                     { name: "10 كباب في خبز كامل", price: "12,00 KM", desc: "10 قطع كباب مشوي في خبز كامل مع البصل. لحم حلال 100%.", img: "images/desetka-cijela.jpg" },
                     { name: "15 كباب في خبز كامل", price: "15,00 KM", desc: "15 قطعة كباب مشوي تقدم في خبز كامل. لحم حلال 100%.", img: "images/petnaeska.jpg" },
                     { name: "20 كباب في خبز كامل", price: "20,00 KM", desc: "20 قطعة كباب مشوي وجبة ملكية فاخرة. لحم حلال 100%.", img: "images/dvadesetka.jpg" }
-                ]},
-                { subcategory: "البرغر والسجق", items: [
-                    { name: "برغر محشو بالجبن", price: "15,00 KM", desc: "برغر لحم مفروم محشو بالجبن الذائب ومشوي على الفحم. لحم حلال 100%.", img: "images/punjena-pljeskavica.jpg" },
-                    { name: "برغر لحم عادي", price: "10,00 KM", desc: "برغر لحم مفروم متبل مشوي في الخبز. لحم حلال 100%.", img: "images/pljeskavica.jpg" },
-                    { name: "سجق مشوي – وجبة صغيرة", price: "7,00 KM", desc: "قطعتان من السجق المتبل المشوي مع الخبز والخردل. لحم حلال 100%.", img: "images/sudzukice-mala.jpg" },
-                    { name: "سجق مشوي – وجبة كبيرة", price: "9,00 KM", desc: "ثلاث قطع من السجق المتبل المشوي مع الخبز والخردل. لحم حلال 100%.", img: "images/sudzukice-velika.jpg" }
+                ]}
+            ],
+            ostala: [
+                { subcategory: "أطباق أخرى والبرغر", items: [
+                    { name: "برغر الوزير", price: "8,00 KM", desc: "هامبرغر / تشيز برغر مع السلطة والصوصات، ويقدّم مع بطاطس مقلية. حلال.", img: "images/vezir-burger.jpg" }
                 ]}
             ],
             piletina: [
@@ -587,10 +591,10 @@ const menuData = {
             ],
             mijesano: [
                 { subcategory: "مشاوي مشكلة والأطباق", items: [
-                    { name: "مشاوي مشكلة لشخص واحد", price: "15,00 KM", desc: "تشكيلة من الكباب، شيش طاووق، برغر، سجق ودجاج + خبز وبطاطس وسلطة. لحم حلال 100%.", img: "images/mijesano1.jpg" },
-                    { name: "مشاوي مشكلة لشخصين", price: "28,00 KM", desc: "طبق مشاوي مزدوج لشخصين يقدم مع الخبز والبطاطس والسلطة. لحم حلال 100%.", img: "images/mijesano2.jpg" },
-                    { name: "مشاوي مشكلة لثلاثة أشخاص", price: "38,00 KM", desc: "طبق مشاوي لثلاثة أشخاص يقدم مع الخبز والبطاطس والسلطة. لحم حلال 100%.", img: "images/mijesano3.jpg" },
-                    { name: "طبق الوزير الفاخر", price: "65,00 KM", desc: "أكبر طبق مشاوي يجمع جميع أنواع اللحوم والشيش والكباب. لحم حلال 100%.", img: "images/vezir-plata.jpg" }
+                    { name: "مشاوي مشكلة لشخص واحد", price: "15,00 KM", desc: "3 كباب، 1 شيش طاووق، 1 برغر، 1 سجق، دجاج مقرمش، فيليه + خبز، بطاطس وسلطة. لحم حلال 100%.", img: "images/mijesano1.jpg" },
+                    { name: "مشاوي مشكلة لشخصين", price: "28,00 KM", desc: "6 كباب، 2 شيش طاووق، 2 برغر، 2 سجق، 2 دجاج مقرمش، 2 فيليه دجاج + 2 خبز، بطاطس وسلطة. لحم حلال 100%.", img: "images/mijesano2.jpg" },
+                    { name: "مشاوي مشكلة لثلاثة أشخاص", price: "38,00 KM", desc: "9 كباب، 3 شيش طاووق، 3 برغر، 3 سجق، 3 دجاج مقرمش، 3 فيليه دجاج + 3 خبز، بطاطس وسلطة. لحم حلال 100%.", img: "images/mijesano3.jpg" },
+                    { name: "طبق الوزير الفاخر", price: "65,00 KM", desc: "طبق فاخر غني: 10 كباب، 4 فيليه، 4 ريش، 4 سجق، 4 برغر، 4 شيش طاووق + 4 خبز، بطاطس وصلصة. لحم حلال 100%.", img: "images/vezir-plata.jpg" }
                 ]}
             ],
             riba: [
@@ -688,7 +692,7 @@ const translations = {
         aboutTitle: "من نحن", aboutText: "مطعم الوزير - أشهى المشاوي والوجبات التقليدية من لحم حلال 100%.",
         contactTitle: "التواصل والموقع", socialTitle: "تابعنا",
         mKajmak: "🧀 قيمر", mAjvar: "🌶️ أيفار", mLepinja: "🫓 خبز إضافي",
-        mJogurt: "🥛 لبن / عيران", mSudzukica: "🌭 سجق", mKobasica: "🌭 سجق مشوي", mSenf: "🟡 خردل"
+        mJogurt: "لبن / عيران 🥛", mSudzukica: "🌭 سجق", mKobasica: "🌭 سجق مشوي", mSenf: "🟡 خردل"
     }
 };
 
@@ -708,7 +712,7 @@ function changeLanguage(langKey) {
     document.getElementById('cat-title').innerText = t.catTitle;
 
     const currentData = menuData[currentLang];
-    const keys = ['pica','supe','cevapi','piletina','mijesano','riba','salate','prilozi','slatko'];
+    const keys = ['pica','supe','cevapi','ostala','piletina','mijesano','riba','salate','prilozi','slatko'];
     keys.forEach(k => {
         const btn = document.getElementById(`btn-${k}`);
         if(btn) btn.innerText = currentData.categories[k] || k;
@@ -853,7 +857,7 @@ function showItemDetail(catKey, groupIndex, itemName) {
     if (!item) return;
 
     const imagePath = item.img ? item.img : 'images/placeholder.jpg';
-    const showSideRecommendations = ['cevapi', 'piletina', 'mijesano', 'dnevna'].includes(catKey);
+    const showSideRecommendations = ['cevapi', 'ostala', 'piletina', 'mijesano', 'dnevna'].includes(catKey);
 
     container.innerHTML = `
         <button class="back-btn" onclick="selectCategory('${currentCategory}')">${t.backBtn}</button>
