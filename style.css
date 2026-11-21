@@ -7,13 +7,13 @@
 
 /* Osnovna pozadina i boje */
 body {
-    background-color: #fcfbfa; /* Blaga, mekana bijela pozadina */
+    background-color: #fcfbfa;
     color: #2b2b2b;
 }
 
 /* Top bar sa jezicima - Tamno Bordo */
 .top-bar {
-    background-color: #580c1f; /* Elegantna tamno bordo */
+    background-color: #580c1f;
     padding: 10px 20px;
     display: flex;
     justify-content: flex-end;
@@ -30,7 +30,7 @@ body {
 
 .lang-btn {
     background: transparent;
-    border: 1px solid #d4af37; /* Zlatni okvir */
+    border: 1px solid #d4af37;
     color: #fff;
     padding: 5px 12px;
     border-radius: 20px;
@@ -53,7 +53,7 @@ body {
 }
 
 .hero-overlay {
-    background: rgba(40, 5, 13, 0.75); /* Tamno bordo filter preko slike */
+    background: rgba(40, 5, 13, 0.75);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -66,7 +66,7 @@ body {
 
 .hero-overlay h1 {
     font-size: 2.2rem;
-    color: #f4d068; /* Zlatna boja naslova */
+    color: #f4d068;
     margin-bottom: 5px;
     letter-spacing: 1px;
     font-weight: 700;
@@ -99,7 +99,7 @@ body {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 25px;
-    color: #580c1f; /* Tamno bordo naslov */
+    color: #580c1f;
     font-weight: 700;
 }
 
@@ -131,7 +131,7 @@ body {
 }
 
 .cat-btn:hover, .cat-btn.active {
-    background: #580c1f; /* Bordo pozadina aktivnog dugmeta */
+    background: #580c1f;
     color: #ffffff;
     border-color: #580c1f;
     box-shadow: 0 4px 10px rgba(88, 12, 31, 0.25);
@@ -150,10 +150,11 @@ body {
 .active-category-title {
     font-size: 1.4rem;
     color: #580c1f;
-    border-bottom: 2px solid #d4af37; /* Zlatna podvučena linija */
+    border-bottom: 2px solid #d4af37;
     padding-bottom: 8px;
     margin-bottom: 20px;
     font-weight: 700;
+    scroll-margin-top: 110px;
 }
 
 /* Accordion Dugi Spisak (Podkategorije) */
@@ -193,14 +194,14 @@ body {
 
 .price {
     font-weight: 700;
-    color: #8c112b; /* Svijetlija bordo za cijene */
+    color: #8c112b;
     font-size: 1.1rem;
 }
 
 .learn-more-link {
     background: none;
     border: none;
-    color: #b38600; /* Zlatno-smeđa za detalje */
+    color: #b38600;
     font-size: 0.82rem;
     cursor: pointer;
     text-decoration: underline;
@@ -338,7 +339,7 @@ body {
 
 .google-btn {
     display: inline-block;
-    background: #580c1f; /* Tamno bordo Google dugme sa zlatnim tekstom */
+    background: #580c1f;
     color: #f4d068;
     padding: 10px 22px;
     border-radius: 20px;
@@ -349,7 +350,7 @@ body {
 }
 
 .site-footer {
-    background: #3b0714; /* Veoma tamno bordo footer za prelijep finiš */
+    background: #3b0714;
     color: #e6d3cd;
     padding: 35px 15px;
     display: flex;
@@ -361,14 +362,6 @@ body {
 
 .site-footer h4 { color: #f4d068; margin-bottom: 10px; }
 
-/* Mobilni odziv */
-@media (max-width: 768px) {
-    .menu-wrapper { flex-direction: column; }
-    .detail-view { flex-direction: column; }
-    .detail-image-box { width: 100%; }
-    .detail-image-box img { height: 200px; }
-}
-
 .social-links {
     display: flex;
     flex-direction: column;
@@ -377,7 +370,7 @@ body {
 }
 
 .social-link {
-    color: #ffffff; /* Čisto bijela slova i ikonice */
+    color: #ffffff;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
@@ -389,9 +382,42 @@ body {
 
 .social-link i {
     font-size: 1.1rem;
-    color: #f4d068; /* Zlatna boja ikonica da se slaže sa naslovima u footeru */
+    color: #f4d068;
 }
 
 .social-link:hover {
     opacity: 0.8;
+}
+
+/* Mobilni odziv - Horizontalna sticky traka kategorija */
+@media (max-width: 768px) {
+    .menu-wrapper { flex-direction: column; }
+    
+    .categories-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        position: sticky;
+        top: 50px;
+        z-index: 90;
+        background: #fcfbfa;
+        padding: 10px 0;
+        border-bottom: 1px solid #e8e1d7;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .categories-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cat-btn {
+        flex: 0 0 auto;
+        padding: 9px 14px;
+        font-size: 0.88rem;
+        border-radius: 20px;
+    }
+
+    .detail-view { flex-direction: column; }
+    .detail-image-box { width: 100%; }
+    .detail-image-box img { height: 200px; }
 }
