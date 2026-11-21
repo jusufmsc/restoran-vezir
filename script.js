@@ -287,4 +287,5 @@ setInterval(updateOpenStatus, 60000);
 
 document.addEventListener("DOMContentLoaded", function() {
     selectCategory('pica');
+    updateOpenStatus();
 });
