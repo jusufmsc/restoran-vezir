@@ -16,11 +16,47 @@ body {
     background-color: #580c1f;
     padding: 10px 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.status-badge.open .status-dot {
+    background-color: #2ecc71;
+    box-shadow: 0 0 8px #2ecc71;
+}
+
+.status-badge.closed .status-dot {
+    background-color: #e74c3c;
+    box-shadow: 0 0 8px #e74c3c;
+}
+
+@media (max-width: 480px) {
+    .top-bar { padding: 8px 12px; }
+    .status-badge { font-size: 0.72rem; padding: 4px 9px; }
+    .lang-btn { padding: 4px 9px; font-size: 0.78rem; }
 }
 
 .lang-selector {
