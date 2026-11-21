@@ -46,6 +46,7 @@ function changeLanguage(langKey) {
     }
 
     selectCategory(currentCategory);
+    updateOpenStatus();
 }
 
 function selectCategory(categoryKey, btnElement) {
@@ -247,6 +248,42 @@ function closeImageModal() {
         modal.style.display = 'none';
     }
 }
+function updateOpenStatus() {
+    const badge = document.getElementById('open-status');
+    const textEl = document.getElementById('status-text');
+    if (!badge || !textEl) return;
+
+    // Tačno vrijeme u BiH (Sarajevo) bez obzira odakle gost gleda
+    const bihTime = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Sarajevo" }));
+    const hour = bihTime.getHours();
+
+    // Radno vrijeme: od 07:00 do 23:00
+    const openHour = 7;
+    const closeHour = 23;
+
+    const isOpen = (hour >= openHour && hour < closeHour);
+
+    const statusLabels = {
+        bs: { open: `Otvoreno do 23:00`, closed: `Zatvoreno · Otvara u 07:00` },
+        en: { open: `Open until 23:00`, closed: `Closed · Opens at 07:00` },
+        tr: { open: `23:00'e kadar açık`, closed: `Kapalı · 07:00'da açılır` },
+        ar: { open: `مفتوح حتى 23:00`, closed: `مغلق · يفتح الساعة 07:00` }
+    };
+
+    const labels = statusLabels[currentLang] || statusLabels.bs;
+
+    badge.classList.remove('open', 'closed');
+    if (isOpen) {
+        badge.classList.add('open');
+        textEl.innerText = labels.open;
+    } else {
+        badge.classList.add('closed');
+        textEl.innerText = labels.closed;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", updateOpenStatus);
+setInterval(updateOpenStatus, 60000);
 
 document.addEventListener("DOMContentLoaded", function() {
     selectCategory('pica');
