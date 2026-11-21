@@ -59,7 +59,7 @@
     </main>
 
     <!-- Pop-up Modal za Preporuke Priloga -->
-    <div id="recommendation-modal" class="modal-overlay">
+    <div id="recommendation-modal" class="modal-overlay" onclick="if(event.target === this) closeModal()">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h3 id="modal-title">Najčešće naručivano uz ovo</h3>
@@ -117,6 +117,7 @@
         </div>
     </footer>
 
+    <script src="languages.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
