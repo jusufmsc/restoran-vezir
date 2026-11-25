@@ -2,6 +2,11 @@ let currentCategory = 'pica';
 let currentLang = 'bs';
 
 function changeLanguage(langKey) {
+    if (typeof gtag === 'function') {
+        gtag('event', 'promjena_jezika', {
+            'odabrani_jezik': lang
+        });
+    }
     if (!menuData[langKey]) langKey = 'bs';
     currentLang = langKey;
     const t = translations[currentLang];
