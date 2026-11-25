@@ -160,6 +160,12 @@ function toggleAccordion(id) {
 }
 
 function showItemDetail(catKey, groupIndex, itemName) {
+    if (typeof gtag === 'function') {
+        gtag('event', 'detalji_jela', {
+            'naziv_jela': itemName,
+            'kategorija': categoryKey
+        });
+    }
     const container = document.getElementById('items-container');
     const currentData = menuData[currentLang];
     const t = translations[currentLang];
