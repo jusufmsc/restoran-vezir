@@ -51,6 +51,13 @@ function changeLanguage(langKey) {
 
 function selectCategory(categoryKey, btnElement) {
     currentCategory = categoryKey;
+
+    if (btnElement && typeof gtag === 'function') {
+        gtag('event', 'klik_kategorija', {
+            'kategorija': categoryKey,
+            'jezik': currentLang
+        });
+    }
     
     const buttons = document.querySelectorAll('.cat-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
