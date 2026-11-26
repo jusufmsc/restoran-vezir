@@ -453,6 +453,44 @@ body {
         border-radius: 20px;
     }
 
+    .search-box {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto 20px auto;
+    padding: 0 15px;
+}
+
+#menu-search {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    font-size: 16px; /* 16px sprječava automatsko zumiranje na iPhoneu */
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #e0d5d1;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+#menu-search:focus {
+    border-color: #8b3a2b; /* Prilagodi glavnoj boji tvog restorana ako je drugačija */
+}
+
+#clear-search {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #888;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
     .detail-view { flex-direction: column; }
     .detail-image-box { width: 100%; }
     .detail-image-box img { height: 200px; }
