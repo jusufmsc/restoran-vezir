@@ -307,3 +307,76 @@ document.addEventListener("DOMContentLoaded", function() {
     selectCategory('pica');
     updateOpenStatus();
 });
+
+function searchMenu(query) {
+    const searchTerm = query.toLowerCase().trim();
+    const clearBtn = document.getElementById('clear-search');
+    const titleElement = document.getElementById('active-category-name');
+    const container = document.getElementById('items-container');
+
+    // Prikaži ili sakrij 'X' dugme za brisanje
+    clearBtn.style.display = searchTerm.length > 0 ? 'block' : 'none';
+
+    // Ako je polje prazno, vrati normalan prikaz aktivne kategorije
+    if (searchTerm === '') {
+        selectCategory(currentCategory, null);
+        return;
+    }
+
+    // Skini 'active' sa dugmadi kategorija dok traje pretraga
+    document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+
+    const currentData = menuData[currentLang];
+    const t = translations[currentLang];
+    titleElement.innerText = `Rezultati za: "${query}"`;
+    container.innerHTML = "";
+
+    let foundCount = 0;
+
+    // Prođi kroz sve kategorije i podkategorije
+    Object.keys(currentData.items).forEach(catKey => {
+        const groups = currentData.items[catKey];
+        if (!groups) return;
+
+        groups.forEach((group, groupIndex) => {
+            group.items.forEach(item => {
+                // Traži u nazivu jela (i u opisu ako postoji)
+                const matchName = item.name.toLowerCase().includes(searchTerm);
+                const matchDesc = item.desc && item.desc.toLowerCase().includes(searchTerm);
+
+                if (matchName || matchDesc) {
+                    foundCount++;
+                    const hasDetails = item.desc ? true : false;
+                    const escapedName = item.name.replace(/'/g, "\\'");
+                    const catLabel = currentData.categories[catKey] || '';
+
+                    container.innerHTML += `
+                        <div class="menu-item">
+                            <div class="item-left">
+                                <small style="color: #888; font-size: 11px; text-transform: uppercase;">${catLabel}</small>
+                                <h4>${item.name}</h4>
+                                ${hasDetails ? `
+                                    <button class="learn-more-link" onclick="showItemDetail('${catKey}', '${groupIndex}', '${escapedName}')">
+                                        ${t.learnMore}
+                                    </button>
+                                ` : ''}
+                            </div>
+                            <span class="price">${item.price}</span>
+                        </div>
+                    `;
+                }
+            });
+        });
+    });
+
+    if (foundCount === 0) {
+        container.innerHTML = `<p style="text-align:center; color:#777; padding: 20px;">Nema rezultata za "${query}".</p>`;
+    }
+}
+
+function clearSearch() {
+    const input = document.getElementById('menu-search');
+    input.value = '';
+    searchMenu('');
+    input.focus();
+}
