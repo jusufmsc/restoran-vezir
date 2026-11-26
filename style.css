@@ -426,6 +426,47 @@ body {
 }
 
 /* Mobilni odziv - Horizontalna sticky traka kategorija */
+/* Pretraga menija (za sve ekrane) */
+.search-box {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 22px auto;
+}
+
+#menu-search {
+    width: 100%;
+    padding: 12px 42px 12px 18px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #e8e1d7;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #2b2b2b;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#menu-search:focus {
+    border-color: #580c1f;
+    box-shadow: 0 4px 12px rgba(88, 12, 31, 0.12);
+}
+
+#clear-search {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #580c1f;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+/* Mobilni odziv - Horizontalna sticky traka kategorija */
 @media (max-width: 768px) {
     .menu-wrapper { flex-direction: column; }
     
@@ -453,45 +494,9 @@ body {
         border-radius: 20px;
     }
 
-    .search-box {
-    position: relative;
-    width: 100%;
-    max-width: 1000px; /* Prilagodi ako je tvoj .menu-wrapper širi ili uži */
-    margin: 0 auto 25px auto;
-    padding: 0 15px;
-    box-sizing: border-box;
-}
-
-#menu-search {
-    width: 100%;
-    padding: 12px 40px 12px 16px;
-    font-size: 16px; /* 16px sprječava automatsko zumiranje na iPhoneu */
-    font-family: 'Poppins', sans-serif;
-    border: 2px solid #e0d5d1;
-    border-radius: 25px;
-    background-color: #ffffff;
-    color: #333;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.2s;
-}
-
-#menu-search:focus {
-    border-color: #8b3a2b; /* Prilagodi glavnoj boji tvog restorana ako je drugačija */
-}
-
-#clear-search {
-    position: absolute;
-    right: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 22px;
-    color: #888;
-    cursor: pointer;
-    padding: 0 5px;
-}
+    #menu-search {
+        border-radius: 25px;
+    }
 
     .detail-view { flex-direction: column; }
     .detail-image-box { width: 100%; }
