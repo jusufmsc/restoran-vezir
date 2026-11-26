@@ -455,9 +455,11 @@ body {
 
     .search-box {
     position: relative;
-    max-width: 500px;
-    margin: 0 auto 20px auto;
+    width: 100%;
+    max-width: 1000px; /* Prilagodi ako je tvoj .menu-wrapper širi ili uži */
+    margin: 0 auto 25px auto;
     padding: 0 15px;
+    box-sizing: border-box;
 }
 
 #menu-search {
