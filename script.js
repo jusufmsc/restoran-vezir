@@ -4,7 +4,7 @@ let currentLang = 'bs';
 function changeLanguage(langKey) {
     if (typeof gtag === 'function') {
         gtag('event', 'promjena_jezika', {
-            'odabrani_jezik': lang
+            'odabrani_jezik': langKey
         });
     }
     if (!menuData[langKey]) langKey = 'bs';
@@ -13,7 +13,7 @@ function changeLanguage(langKey) {
 
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.innerText.toLowerCase() === langKey);
-    if(activeBtn) activeBtn.classList.add('active');
+    if (activeBtn) activeBtn.classList.add('active');
 
     document.body.style.direction = (langKey === 'ar') ? 'rtl' : 'ltr';
 
@@ -25,7 +25,7 @@ function changeLanguage(langKey) {
     const keys = ['pica','supe','cevapi','ostala','piletina','mijesano','riba','salate','prilozi','slatko'];
     keys.forEach(k => {
         const btn = document.getElementById(`btn-${k}`);
-        if(btn) btn.innerText = currentData.categories[k] || k;
+        if (btn) btn.innerText = currentData.categories[k] || k;
     });
 
     document.getElementById('modal-title').innerText = t.modalTitle;
@@ -56,6 +56,13 @@ function changeLanguage(langKey) {
 
 function selectCategory(categoryKey, btnElement) {
     currentCategory = categoryKey;
+
+    const searchInput = document.getElementById('menu-search');
+    const clearBtn = document.getElementById('clear-search');
+    if (searchInput && btnElement) {
+        searchInput.value = '';
+        if (clearBtn) clearBtn.style.display = 'none';
+    }
 
     if (btnElement && typeof gtag === 'function') {
         gtag('event', 'klik_kategorija', {
@@ -98,8 +105,8 @@ function selectCategory(categoryKey, btnElement) {
                 `;
                 
                 group.items.forEach(item => {
-                    const hasDetails = item.desc ? true : false;
-                    const escapedName = item.name.replace(/'/g, "\\'");
+                    const hasDetails = Boolean(item.desc);
+                    const escapedName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                     groupHTML += `
                         <div class="menu-item">
                             <div class="item-left">
@@ -121,8 +128,8 @@ function selectCategory(categoryKey, btnElement) {
         } else {
             const singleGroup = groups[0];
             singleGroup.items.forEach(item => {
-                const hasDetails = item.desc ? true : false;
-                const escapedName = item.name.replace(/'/g, "\\'");
+                const hasDetails = Boolean(item.desc);
+                const escapedName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 let itemHTML = `
                     <div class="menu-item">
                         <div class="item-left">
@@ -215,7 +222,7 @@ function showSideDetail(sideKey) {
     const currentData = menuData[currentLang];
     const t = translations[currentLang];
     const item = currentData.sideDetails[sideKey];
-    if(!item) return;
+    if (!item) return;
 
     const container = document.getElementById('items-container');
 
@@ -266,16 +273,15 @@ function closeImageModal() {
         modal.style.display = 'none';
     }
 }
+
 function updateOpenStatus() {
     const badge = document.getElementById('open-status');
     const textEl = document.getElementById('status-text');
     if (!badge || !textEl) return;
 
-    // Tačno vrijeme u BiH (Sarajevo) bez obzira odakle gost gleda
     const bihTime = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Sarajevo" }));
     const hour = bihTime.getHours();
 
-    // Radno vrijeme: od 07:00 do 23:00
     const openHour = 7;
     const closeHour = 23;
 
@@ -300,30 +306,21 @@ function updateOpenStatus() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", updateOpenStatus);
-setInterval(updateOpenStatus, 60000);
-
-document.addEventListener("DOMContentLoaded", function() {
-    selectCategory('pica');
-    updateOpenStatus();
-});
-
 function searchMenu(query) {
     const searchTerm = query.toLowerCase().trim();
     const clearBtn = document.getElementById('clear-search');
     const titleElement = document.getElementById('active-category-name');
     const container = document.getElementById('items-container');
 
-    // Prikaži ili sakrij 'X' dugme za brisanje
-    clearBtn.style.display = searchTerm.length > 0 ? 'block' : 'none';
+    if (clearBtn) {
+        clearBtn.style.display = searchTerm.length > 0 ? 'block' : 'none';
+    }
 
-    // Ako je polje prazno, vrati normalan prikaz aktivne kategorije
     if (searchTerm === '') {
         selectCategory(currentCategory, null);
         return;
     }
 
-    // Skini 'active' sa dugmadi kategorija dok traje pretraga
     document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
 
     const currentData = menuData[currentLang];
@@ -333,21 +330,19 @@ function searchMenu(query) {
 
     let foundCount = 0;
 
-    // Prođi kroz sve kategorije i podkategorije
     Object.keys(currentData.items).forEach(catKey => {
         const groups = currentData.items[catKey];
         if (!groups) return;
 
         groups.forEach((group, groupIndex) => {
             group.items.forEach(item => {
-                // Traži u nazivu jela (i u opisu ako postoji)
                 const matchName = item.name.toLowerCase().includes(searchTerm);
                 const matchDesc = item.desc && item.desc.toLowerCase().includes(searchTerm);
 
                 if (matchName || matchDesc) {
                     foundCount++;
-                    const hasDetails = item.desc ? true : false;
-                    const escapedName = item.name.replace(/'/g, "\\'");
+                    const hasDetails = Boolean(item.desc);
+                    const escapedName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                     const catLabel = currentData.categories[catKey] || '';
 
                     container.innerHTML += `
@@ -376,7 +371,15 @@ function searchMenu(query) {
 
 function clearSearch() {
     const input = document.getElementById('menu-search');
-    input.value = '';
-    searchMenu('');
-    input.focus();
+    if (input) {
+        input.value = '';
+        searchMenu('');
+        input.focus();
+    }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    selectCategory('pica');
+    updateOpenStatus();
+});
+setInterval(updateOpenStatus, 60000);
