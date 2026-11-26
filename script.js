@@ -168,7 +168,7 @@ function showItemDetail(catKey, groupIndex, itemName) {
     if (typeof gtag === 'function') {
         gtag('event', 'detalji_jela', {
             'naziv_jela': itemName,
-            'kategorija': categoryKey
+            'kategorija': catKey
         });
     }
     const container = document.getElementById('items-container');
