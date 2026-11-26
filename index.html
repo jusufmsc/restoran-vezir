@@ -46,6 +46,10 @@
     <!-- Meni Sekcija -->
     <main class="menu-container" id="menu-section">
         <h2 class="section-title" id="cat-title">Meni</h2>
+        <div class="search-box">
+            <input type="text" id="menu-search" placeholder="🔍 Pretraži jelo ili piće..." oninput="searchMenu(this.value)">
+            <button id="clear-search" onclick="clearSearch()" style="display: none;">&times;</button>
+        </div>
 
         <div class="menu-wrapper">
             <!-- Navigacija Kategorija -->
